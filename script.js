@@ -1,19 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if the form and feedback div exist
-    const form = document.getElementById('registration-form');
-    const feedbackDiv = document.getElementById('form-feedback');
-    
-    if (!form) {
-        console.error('Error: Form element not found.');
-        return;
-    }
-    
-    if (!feedbackDiv) {
-        console.error('Error: Feedback div element not found.');
-        return;
-    }
-    
-    form.addEventListener('submit', (event) => {
+    // Function to handle form submission
+    function handleFormSubmit(event) {
         event.preventDefault();
 
         // Retrieve and trim user inputs
@@ -43,6 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Display feedback
+        const feedbackDiv = document.getElementById('form-feedback');
+        if (!feedbackDiv) {
+            console.error('Error: Feedback div element not found.');
+            return;
+        }
+
         feedbackDiv.style.display = 'block'; // Make the feedback div visible
         if (isValid) {
             feedbackDiv.textContent = 'Registration successful!';
@@ -53,5 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
             feedbackDiv.style.color = '#dc3545'; // Red for error
             feedbackDiv.style.backgroundColor = '#f8d7da'; // Light red background
         }
-    });
+    }
+
+    // Form and feedback div selection
+    const form = document.getElementById('registration-form');
+    if (!form) {
+        console.error('Error: Form element not found.');
+        return;
+    }
+
+    // Add event listener for form submission
+    form.addEventListener('submit', handleFormSubmit);
 });
